@@ -1,15 +1,6 @@
 {
-  "builds": [
-    {
-      "src": "src/index.html",
-      "use": "@vercel/angular",
-      "config": { "distDir": "dist/pointage" }
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
