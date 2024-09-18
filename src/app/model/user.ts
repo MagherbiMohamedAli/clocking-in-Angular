@@ -10,6 +10,7 @@ export class User {
     roles!: Role[];
     statuses?: Status;
     time?: any;
+    workMode?: String;
     constructor() { }
 }
 

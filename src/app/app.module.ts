@@ -31,7 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FooterComponent,
     NavbarComponent,
     HomeComponent
-  ],
+    ],
   imports: [
     MatTableModule,
     MatFormFieldModule,

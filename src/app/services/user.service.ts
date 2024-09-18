@@ -15,11 +15,10 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>("https://clocking-in-spring-boot-production.up.railway.app/api/user/getAllUsers");
   }
-  addUserStatus(userId: number, statusId: number): Observable<void> {
-    return this.http.post<void>("https://clocking-in-spring-boot-production.up.railway.app/api/user/add", null, {
-      params: { userId: userId.toString(), statusId: statusId.toString() }
-    });
+  addUserStatus(userId: number, requestData: any): Observable<any> {
+    return this.http.post(`https://clocking-in-spring-boot-production.up.railway.app/api/user/${userId}/status`, requestData);
   }
+  
 
   getTimeWorked(userId: number): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/${userId}/total-time`);

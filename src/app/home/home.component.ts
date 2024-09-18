@@ -16,13 +16,15 @@ import { MatSort } from '@angular/material/sort';
 export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  selectedWorkMode: string | null = null;
+  entreeStatusId: number | null = null;
   allUsers: any[] = [];
   users: any[] = [];
   statuses: any[] = [];
   selectedUserId: number | null = null;
   selectedStatusId: number | null = null;
   filteredUsers: MatTableDataSource<any> = new MatTableDataSource<any>();
-  displayedColumns: string[] = ['nom', 'status', 'time', 'action'];
+  displayedColumns: string[] = ['nom', 'tatus', 'time', 'workMode', 'action'];
   loggedInUserId: number | null = null;
   isAdmin: boolean = false;
   totalTimeWorked: number | null = null;
@@ -36,14 +38,15 @@ export class HomeComponent implements OnInit {
     this.fetchStatuses();
     this.isAdmin = this.checkIfAdmin();
     if (this.isAdmin) {
-      this.displayedColumns = ['nom', 'status', 'time', 'action'];
+      this.displayedColumns = ['nom', 'status', 'time', 'workMode', 'action'];
     } else {
-      this.displayedColumns = ['nom', 'status', 'time'];
+      this.displayedColumns = ['nom', 'status', 'time', 'workMode'];
     }
-  
+
     this.scheduleFilterAt11_50PM();
   }
 
+  
   checkIfAdmin(): boolean {
     const authUser = localStorage.getItem('AuthUser');
     if (authUser) {
@@ -59,22 +62,35 @@ export class HomeComponent implements OnInit {
   }
 
   fetchUsers(): void {
-    this.http.get<any[]>('https://clocking-in-spring-boot-production.up.railway.app/api/user/getAllUsers').subscribe(data => {
+    this.http.get<any[]>('https://clocking-in-spring-boot-production.up.railway.app/api/user/employees').subscribe(data => {
       this.allUsers = data;
       this.users = data;
       this.filterUsersWithStatus();
     });
   }
-
   fetchStatuses(): void {
     this.http.get<any[]>('https://clocking-in-spring-boot-production.up.railway.app/api/status/all').subscribe(data => {
       this.statuses = data;
+  
+      const entreeStatus = this.statuses.find(status => status.status === 'ENTREE');
+      if (entreeStatus) {
+        this.entreeStatusId = entreeStatus.id;
+      }
     });
   }
+  
 
   onSubmit(): void {
     if (this.selectedStatusId && this.selectedUserId) {
-      this.userService.addUserStatus(this.selectedUserId, this.selectedStatusId).subscribe({
+      const requestData: any = {
+        statusId: this.selectedStatusId
+      };
+  
+      if (this.selectedStatusId === this.entreeStatusId && this.selectedWorkMode) {
+        requestData.workMode = this.selectedWorkMode;
+      }
+  
+      this.userService.addUserStatus(this.selectedUserId, requestData).subscribe({
         next: () => {
           this.fetchUsers();
         },
@@ -262,20 +278,20 @@ export class HomeComponent implements OnInit {
   scheduleFilterAt11_50PM(): void {
     const now = new Date();
     const targetTime = new Date();
-    
+
     targetTime.setHours(23, 50, 0, 0);
-    
+
     if (now.getTime() > targetTime.getTime()) {
       targetTime.setDate(targetTime.getDate() + 1);
     }
-    
+
     const timeUntil11_50PM = targetTime.getTime() - now.getTime();
-    
+
     setTimeout(() => {
       this.filterUsersWithoutSortie();
       setInterval(() => {
         this.filterUsersWithoutSortie();
-      }, 24 * 60 * 60 * 1000); 
+      }, 24 * 60 * 60 * 1000);
     }, timeUntil11_50PM);
   }
 

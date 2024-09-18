@@ -10,4 +10,5 @@ export class AuthResponse {
     nom!: string;          
     prenom!: string;  
     status!: Status;
+    workMode!: String;
 }
