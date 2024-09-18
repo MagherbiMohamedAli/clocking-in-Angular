@@ -1,0 +1,43 @@
+<section class="py-5">
+  <div class="container-fluid">
+    <div class="text-center mb-5">
+      <h1  style="margin-bottom: -110px; margin-left: 49%;">Connectez-vous</h1>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="credentialForm" (ngSubmit)="login()" style="margin-top: 10%;">
+
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="email"><b> Email:</b>
+              <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
+                <span *ngIf="email?.errors?.['required']" style="color: red;">*Email Obligatoire</span>
+                <span *ngIf="email?.errors?.['email']" style="color: red;">Email invalide</span>
+              </div>
+            </label>
+
+            <input type="text" name="email" id="email" placeholder="Votre email" formControlName="email" required
+              class="form-control form-control-lg" />
+          </div>
+
+          <div data-mdb-input-init class="form-outline mb-3">
+            <label class="form-label" for="password"><b>Mot de passe:</b>
+              <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
+                <span *ngIf="password?.errors?.['required']" style="color: red;">*Mot de passe Obligatoire</span>
+                <span *ngIf="password?.errors?.['minlength']" style="color: red;">Mot de passe doit etre au moins 6 caracteres</span>
+              </div>
+            </label>
+            <input type="password" name="password" formControlName="password" id="password"
+              placeholder="Votre mot de passe" required class="form-control form-control-lg" />
+          </div>
+
+          <div class="input-box button d-flex justify-content-end">
+            <button type="submit" [disabled]="!credentialForm.valid" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

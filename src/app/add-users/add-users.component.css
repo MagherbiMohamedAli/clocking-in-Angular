@@ -1,0 +1,16 @@
+.h-custom {
+    height: auto;
+  }
+  
+  .input-box.button {
+    text-align: right;
+  }
+  
+  .custom-input {
+    font-size: 14px; 
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+  }
+  
+  

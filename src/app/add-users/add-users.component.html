@@ -1,0 +1,85 @@
+<section class="py-5" style="margin-top: 5%;">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+      <!-- <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <img src="assets/addusers.png" class="img-fluid" style="height: 50%; width: 50%;" alt="Sample image">
+      </div> -->
+
+      <div class="col-md-8">
+        <form [formGroup]="credentialForm" (ngSubmit)="signup()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-outline mb-3">
+                <label class="form-label" for="nom" style="margin-left: 2%;"><b>Nom:</b>
+
+                </label>
+                <input type="text" name="nom" id="nom" placeholder="Votre nom" formControlName="nom" required
+                  class="form-control custom-input" />
+                <div *ngIf="(nom?.dirty || nom?.touched) && nom?.errors" class="errors">
+                  <span *ngIf="nom?.errors?.['required']" style="color: red;">*Nom Obligatoire</span>
+                </div>
+              </div>
+
+              <div class="form-outline mb-3">
+                <label class="form-label" for="prenom" style="margin-left: 2%;"><b>Prenom:</b>
+
+                </label>
+                <input type="text" name="prenom" id="prenom" placeholder="Votre prenom" formControlName="prenom"
+                  required class="form-control custom-input" />
+                <div *ngIf="(prenom?.dirty || prenom?.touched) && prenom?.errors" class="errors">
+                  <span *ngIf="prenom?.errors?.['required']" style="color: red;">*Prenom Obligatoire</span>
+                </div>
+              </div>
+
+              <div class="form-outline mb-3">
+                <label class="form-label" for="email" style="margin-left: 2%;"><b>Email:</b>
+
+                </label>
+                <input type="text" name="email" id="email" placeholder="Votre email" formControlName="email" required
+                  class="form-control custom-input" />
+                <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
+                  <span *ngIf="email?.errors?.['required']" style="color: red;">*Email Obligatoire</span>
+                  <span *ngIf="email?.errors?.['email']" style="color: red;">Email invalide</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-outline mb-3">
+                <label class="form-label" for="password" style="margin-left: 2%;"><b>Mot de passe:</b>
+
+                </label>
+                <input type="password" name="password" formControlName="password" id="password"
+                  placeholder="Votre mot de passe" required class="form-control custom-input" />
+                <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
+                  <span *ngIf="password?.errors?.['required']" style="color: red;">*Mot de passe Obligatoire</span>
+                  <span *ngIf="password?.errors?.['minlength']" style="color: red;">Mot de passe doit être au moins 6
+                    caractères</span>
+                </div>
+              </div>
+
+              <div class="form-outline mb-3">
+                <label class="form-label" for="confirmPassword" style="margin-left: 2%;"><b>Confirmez le mot de
+                    passe:</b></label>
+                <input type="password" name="confirmPassword" formControlName="confirmPassword" id="confirmPassword"
+                  placeholder="Confirmez votre mot de passe" required class="form-control custom-input" />
+                <div
+                  *ngIf="credentialForm.errors?.['passwordMismatch'] && (confirmPassword?.dirty || confirmPassword?.touched)"
+                  class="errors">
+                  <span style="color: red;">Les mots de passe doivent correspondre</span>
+
+                </div>
+
+              </div>
+
+              <div class="input-box button d-flex justify-content-end" style="margin-top: 10%;">
+                <button type="submit" [disabled]="!credentialForm.valid" class="btn btn-primary"
+                  style=" border-radius: 20px;">Inscrire</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

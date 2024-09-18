@@ -1,0 +1,23 @@
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.input-box.button {
+    margin-left: 87%;
+}
+
+.title {
+    color: white;
+    padding-right: 5%;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
