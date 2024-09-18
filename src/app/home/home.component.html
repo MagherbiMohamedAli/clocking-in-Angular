@@ -2,7 +2,7 @@
     <div class="filter-container mat-elevation-z3">
         <div class="form-row">
             <mat-form-field class="form-field" appearance="fill">
-                <mat-label>Select User</mat-label>
+                <mat-label>Select user</mat-label>
                 <mat-select [(ngModel)]="selectedUserId" (selectionChange)="onUserSelect()">
                     <mat-option *ngFor="let user of users" [value]="user.id">
                         {{ user.nom }} {{ user.prenom }}
@@ -11,7 +11,7 @@
             </mat-form-field>
 
             <mat-form-field class="form-field" appearance="fill">
-                <mat-label>Select Status</mat-label>
+                <mat-label>Select status</mat-label>
                 <mat-select [(ngModel)]="selectedStatusId">
                     <mat-option *ngFor="let status of statuses" [value]="status.id">
                         {{ status.status.charAt(0).toUpperCase() + status.status.slice(1).toLowerCase() }}
@@ -20,7 +20,7 @@
             </mat-form-field>
 
             <mat-form-field *ngIf="selectedStatusId === entreeStatusId" class="form-field" appearance="fill">
-                <mat-label>Select Work Mode</mat-label>
+                <mat-label>Select work mode</mat-label>
                 <mat-select [(ngModel)]="selectedWorkMode">
                     <mat-option value="REMOTE">Remote</mat-option>
                     <mat-option value="ONSITE">Onsite</mat-option>
