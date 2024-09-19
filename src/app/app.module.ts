@@ -17,6 +17,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
@@ -26,6 +27,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; // <-- Import this
 import { MatInputModule } from '@angular/material/input';
 import { ManageAbsComponent } from './manage-abs/manage-abs.component';
+import { MyAbsenceComponent } from './my-absence/my-absence.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +40,15 @@ import { ManageAbsComponent } from './manage-abs/manage-abs.component';
     NavbarComponent,
     HomeComponent,
     AddAbsenceComponent,
-    ManageAbsComponent
+    ManageAbsComponent,
+    MyAbsenceComponent,
+    UsersListComponent,
+    UserUpdateComponent
     ],
   imports: [
     MatTableModule,
     FormsModule,
+    MatDialogModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,

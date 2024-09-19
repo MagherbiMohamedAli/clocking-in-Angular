@@ -1,0 +1,23 @@
+<h2 mat-dialog-title style="text-align: center;">Modifier Utilisateur</h2>
+
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="update-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="nom" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="prenom" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required />
+  </mat-form-field>
+
+  <div mat-dialog-actions class="action-buttons">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!updateForm.valid">Mettre à jour</button>
+    <button mat-raised-button mat-dialog-close>Annuler</button>
+  </div>
+</form>

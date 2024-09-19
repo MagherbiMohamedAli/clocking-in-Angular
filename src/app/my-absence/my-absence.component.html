@@ -1,0 +1,72 @@
+<div *ngIf="absenceInfo; else noAbsence" style="margin-top: 5%; margin-bottom: 5%">
+    <h1 style="text-align: center; margin-bottom: 5%;">Consultation absences</h1>
+    <div id="tab" style="margin-bottom: 5%; max-width: 80%; margin: auto;">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+        <!-- Nom et Prénom Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et Prénom </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.nom }} {{ element.prenom }}
+          </td>
+        </ng-container>
+  
+        <!-- Type d'absence Column -->
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'absence </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.type }}
+          </td>
+        </ng-container>
+  
+        <!-- Date Début Column -->
+        <ng-container matColumnDef="dateStart">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Début </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.dateStart | date: 'mediumDate' }}
+          </td>
+        </ng-container>
+  
+        <!-- Date Fin Column -->
+        <ng-container matColumnDef="dateEnd">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Fin </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.dateEnd | date: 'mediumDate' }}
+          </td>
+        </ng-container>
+  
+        <!-- Nombre de Jours Column -->
+        <ng-container matColumnDef="numberOfDays">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de Jours </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.numberOfDays }} jours
+          </td>
+        </ng-container>
+  
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.description }}
+          </td>
+        </ng-container>
+  
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+          <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
+            <span>{{ element.status }}</span>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Fallback message when there is no absence data -->
+  <ng-template #noAbsence>
+    <h2 style="text-align: center; margin-top: 16%;">Vous pouvez demander une absence dans l'onglet absence</h2>
+  </ng-template>
+  

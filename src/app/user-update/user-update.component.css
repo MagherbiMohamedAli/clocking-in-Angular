@@ -1,0 +1,19 @@
+/* Center the form and set the input fields to 80% of the popup's width */
+.update-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 80%; /* Input fields will be 80% of the popup's width */
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 80%; /* Ensure action buttons also follow the same width */
+    margin-top: 15px;
+  }
+  

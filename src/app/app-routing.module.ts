@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { AddAbsenceComponent } from './add-absence/add-absence.component';
 import { ManageAbsComponent } from './manage-abs/manage-abs.component';
+import { MyAbsenceComponent } from './my-absence/my-absence.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 const routes: Routes = [
   {path:"login", component: AuthComponent},
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path:"addUsers", component: AddUsersComponent, canActivate:[adminGuard]},
   {path:"addabs", component: AddAbsenceComponent, canActivate:[authGuard]},
   {path:"manageabs", component: ManageAbsComponent, canActivate:[adminGuard]},
+  {path:"myabs", component: MyAbsenceComponent, canActivate:[authGuard]},
+  {path:"users", component: UsersListComponent, canActivate:[adminGuard]},
 ];
 
 @NgModule({

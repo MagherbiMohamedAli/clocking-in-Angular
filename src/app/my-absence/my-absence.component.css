@@ -1,0 +1,16 @@
+/* Status color styles */
+.status-approved {
+    color: green;
+  }
+  
+  .status-pending {
+    color: orange;
+  }
+  
+  .status-denied {
+    color: red;
+  }
+  
+  
+ 
+  

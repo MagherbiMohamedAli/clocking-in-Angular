@@ -32,4 +32,12 @@ export class NavbarComponent {
     }
     return false;
   }
+  isEmp(): boolean {
+    const authUser = localStorage.getItem('AuthUser');
+    if (authUser) {
+      const user = JSON.parse(authUser);
+      return user.roles.some((role: any) => role.role === 'ROLE_EMPLOYEE');
+    }
+    return false;
+  }
 }
