@@ -14,6 +14,7 @@ import { AuthResponse } from '../model/auth-response';
 })
 export class AuthComponent implements OnInit {
   credentialForm!: FormGroup;
+  showPassword: boolean = false;
   user: any;
   loggedIn: any;
   loginReq = new LoginRequest();
@@ -23,6 +24,10 @@ export class AuthComponent implements OnInit {
     private localStorage: LocalStorageService,
     private fb: FormBuilder
   ) { }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   login() {
     console.log('Login function called');
     console.log(this.credentialForm.value);

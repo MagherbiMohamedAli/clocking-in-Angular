@@ -23,15 +23,25 @@
           </div>
 
           <div data-mdb-input-init class="form-outline mb-3">
-            <label class="form-label" for="password"><b>Mot de passe:</b>
-              <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
-                <span *ngIf="password?.errors?.['required']" style="color: red;">*Mot de passe Obligatoire</span>
-                <span *ngIf="password?.errors?.['minlength']" style="color: red;">Mot de passe doit etre au moins 6 caracteres</span>
-              </div>
-            </label>
-            <input type="password" name="password" formControlName="password" id="password"
-              placeholder="Votre mot de passe" required class="form-control form-control-lg" />
+            <label class="form-label" for="password"><b>Mot de passe:</b></label>
+            
+            <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
+              <span *ngIf="password?.errors?.['required']" style="color: red;">*Mot de passe Obligatoire</span>
+              <span *ngIf="password?.errors?.['minlength']" style="color: red;">Mot de passe doit être au moins 6 caractères</span>
+            </div>
+            
+            <div class="input-group">
+              <!-- Password input -->
+              <input [type]="showPassword ? 'text' : 'password'" name="password" formControlName="password" id="password"
+                placeholder="Votre mot de passe" required class="form-control form-control-lg" />
+          
+              <!-- Eye Icon for toggling -->
+              <span class="input-group-text" style="cursor: pointer; background-color: transparent;" (click)="togglePasswordVisibility()">
+                <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+              </span>
+            </div>
           </div>
+          
 
           <div class="input-box button d-flex justify-content-end">
             <button type="submit" [disabled]="!credentialForm.valid" class="btn btn-primary">Login</button>

@@ -1,0 +1,65 @@
+<section class="py-5">
+  <h1 style="text-align: center; margin-bottom: 4%;">Demander une absence</h1>
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-md-8">
+        <form [formGroup]="absenceForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Type -->
+              <div class="form-outline mb-3">
+                <label for="type" class="form-label" style="margin-left: 2%;"><b>Type:</b></label>
+                <select formControlName="type" class="form-control" required>
+                  <option value="Congé">Congé</option>
+                  <option value="Maladie">Maladie</option>
+                </select>
+                <div *ngIf="absenceForm.controls['type'].invalid && (absenceForm.controls['type'].dirty || absenceForm.controls['type'].touched)" class="errors">
+                  <span style="color: red;">*Type Obligatoire</span>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="form-outline mb-3">
+                <label for="description" class="form-label" style="margin-left: 2%;"><b>Description:</b></label>
+                <textarea formControlName="description" placeholder="Max. 5000 caractères" class="form-control" rows="3" required></textarea>
+                <div *ngIf="absenceForm.controls['description'].invalid && (absenceForm.controls['description'].dirty || absenceForm.controls['description'].touched)" class="errors">
+                  <span style="color: red;">*Description Obligatoire</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <!-- Start Date -->
+              <div class="form-outline mb-3">
+                <label for="dateStart" class="form-label" style="margin-left: 2%;"><b>Date de début:</b></label>
+                <input type="date" formControlName="dateStart" class="form-control" required />
+                <div *ngIf="absenceForm.controls['dateStart'].invalid && (absenceForm.controls['dateStart'].dirty || absenceForm.controls['dateStart'].touched)" class="errors">
+                  <span style="color: red;">*Date de début Obligatoire</span>
+                </div>
+                <div *ngIf="startDateInvalid" class="errors">
+                  <span style="color: red;">*Date de début doit être dans le futur et avant la date de fin</span>
+                </div>
+              </div>
+
+              <!-- End Date -->
+              <div class="form-outline mb-3">
+                <label for="dateEnd" class="form-label" style="margin-left: 2%;"><b>Date de fin:</b></label>
+                <input type="date" formControlName="dateEnd" class="form-control" required />
+                <div *ngIf="absenceForm.controls['dateEnd'].invalid && (absenceForm.controls['dateEnd'].dirty || absenceForm.controls['dateEnd'].touched)" class="errors">
+                  <span style="color: red;">*Date de fin Obligatoire</span>
+                </div>
+                <div *ngIf="endDateInvalid" class="errors">
+                  <span style="color: red;">*Date de fin doit être après la date de début</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box button d-flex justify-content-end" style="margin-top: 10%;">
+            <button type="submit" class="btn btn-primary" style="border-radius: 20px;" [disabled]="absenceForm.invalid || startDateInvalid || endDateInvalid">Demander l'absence</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

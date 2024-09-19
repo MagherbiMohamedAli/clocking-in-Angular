@@ -21,7 +21,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { AddAbsenceComponent } from './add-absence/add-absence.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; // <-- Import this
+import { MatInputModule } from '@angular/material/input';
+import { ManageAbsComponent } from './manage-abs/manage-abs.component';
 
 @NgModule({
   declarations: [
@@ -30,26 +34,37 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AddUsersComponent,
     FooterComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    AddAbsenceComponent,
+    ManageAbsComponent
     ],
   imports: [
     MatTableModule,
+    FormsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
     MatPaginatorModule,
     MatSortModule,
     BrowserModule,
     MatButtonModule,
+    MatSelectModule,
     MatIconModule,
     AppRoutingModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     RouterModule.forRoot([]),
     FormsModule,
     ReactiveFormsModule,
     CommonModule
 
   ],
-  providers: [authInterceptorProviders, provideAnimationsAsync()],
+  providers: [authInterceptorProviders, provideAnimationsAsync(), MatNativeDateModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

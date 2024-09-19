@@ -20,6 +20,16 @@
             <h5 class="mb-0">Pointage</h5>
           </a>
         </li>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-white" [routerLink]="['/addabs']" *ngIf="isLoggedIn()">
+            <h5 class="mb-0">Absence</h5>
+          </a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link text-white" [routerLink]="['/manageabs']" *ngIf="isAdmin() && isLoggedIn()">
+            <h5 class="mb-0">Gérer les absences</h5>
+          </a>
+        </li>
       </ul>
       <div class="d-flex">
         <button class="btn btn-danger" (click)="signOut()" type="button" *ngIf="isLoggedIn()">Se déconnecter</button>
