@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import Aos from 'aos';
 
 @Component({
   selector: 'app-add-users',
@@ -19,6 +20,11 @@ export class AddUsersComponent implements OnInit{
   ) { }
 
   ngOnInit() {
+    Aos.init({
+      duration: 1000, 
+      easing: 'ease-in-out', 
+      once: true
+    });
     this.credentialForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],

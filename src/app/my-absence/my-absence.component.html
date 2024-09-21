@@ -1,61 +1,61 @@
 <div *ngIf="absenceInfo; else noAbsence" style="margin-top: 5%; margin-bottom: 5%">
-    <h1 style="text-align: center; margin-bottom: 5%;">Consultation absences</h1>
-    <div id="tab" style="margin-bottom: 5%; max-width: 80%; margin: auto;">
+    <h1 style="text-align: center; margin-bottom: 5%; color: #006039; font-family: cursive;" data-aos="fade-down">Consultation absences</h1>
+    <div id="tab" style="margin-bottom: 5%; max-width: 80%; margin: auto;" data-aos="zoom-in">
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   
         <!-- Nom et Prénom Column -->
         <ng-container matColumnDef="nom">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et Prénom </th>
-          <td mat-cell *matCellDef="let element">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nom et Prénom </th>
+          <td mat-cell *matCellDef="let element" id="cur">
             {{ element.nom }} {{ element.prenom }}
           </td>
         </ng-container>
   
         <!-- Type d'absence Column -->
         <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'absence </th>
-          <td mat-cell *matCellDef="let element">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Type d'absence </th>
+          <td mat-cell *matCellDef="let element" id="cur">
             {{ element.type }}
           </td>
         </ng-container>
   
         <!-- Date Début Column -->
         <ng-container matColumnDef="dateStart">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Début </th>
-          <td mat-cell *matCellDef="let element">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Début </th>
+          <td mat-cell *matCellDef="let element" id="cur">
             {{ element.dateStart | date: 'mediumDate' }}
           </td>
         </ng-container>
   
         <!-- Date Fin Column -->
         <ng-container matColumnDef="dateEnd">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Fin </th>
-          <td mat-cell *matCellDef="let element">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Fin </th>
+          <td mat-cell *matCellDef="let element" id="cur">
             {{ element.dateEnd | date: 'mediumDate' }}
           </td>
         </ng-container>
   
         <!-- Nombre de Jours Column -->
         <ng-container matColumnDef="numberOfDays">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de Jours </th>
-          <td mat-cell *matCellDef="let element">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nombre de Jours </th>
+          <td mat-cell *matCellDef="let element" id="cur">
             {{ element.numberOfDays }} jours
           </td>
         </ng-container>
   
         <!-- Description Column -->
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-          <td mat-cell *matCellDef="let element">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Description </th>
+          <td mat-cell *matCellDef="let element" id="cur">
             {{ element.description }}
           </td>
         </ng-container>
   
         <!-- Status Column -->
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Statut </th>
           <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
-            <span>{{ element.status }}</span>
+            <span id="cur">{{ element.status }}</span>
           </td>
         </ng-container>
   

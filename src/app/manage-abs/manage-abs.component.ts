@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import Aos from 'aos';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,6 +23,11 @@ export class ManageAbsComponent implements OnInit{
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    Aos.init({
+      duration: 1000, 
+      easing: 'ease-in-out', 
+      once: true
+    });
     this.filteredAbsences.paginator = this.paginator;
     this.filteredAbsences.sort = this.sort;
     this.fetchPendingAbsences()

@@ -1,30 +1,30 @@
 <div class="container">
-    <h1 style="text-align: center; margin-top: 4%;">Gérer les absences</h1>
+    <h1 style="margin-bottom: 2%;color: #006039; font-family: cursive;" data-aos="fade-down">Gérer les absences</h1>
 
-    <div class="filter-section">
+    <div class="filter-section" data-aos="fade-right">
         <div class="filter-container">
             <div class="form-row">
                 <mat-form-field appearance="fill">
-                    <mat-label>Select Absence Status</mat-label>
-                    <mat-select [(ngModel)]="selectedStatus" (selectionChange)="onStatusSelect()">
-                        <mat-option value="approved">Acceptés</mat-option>
-                        <mat-option value="denied">Refusés</mat-option>
-                        <mat-option value="pending">En cours</mat-option>
+                    <mat-label id="cur">Select Absence Status</mat-label>
+                    <mat-select id="cur" [(ngModel)]="selectedStatus" (selectionChange)="onStatusSelect()">
+                        <mat-option id="cur" value="approved">Acceptés</mat-option>
+                        <mat-option id="cur" value="denied">Refusés</mat-option>
+                        <mat-option id="cur" value="pending">En cours</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
         </div>
     </div>
 
-    <div class="table-container mat-elevation-z8" style="margin-bottom: 5%;">
-        <table mat-table [dataSource]="filteredAbsences" matSort class="mat-elevation-z8">
+    <div class="table-container" style="margin-bottom: 5%;" data-aos="zoom-in">
+        <table mat-table [dataSource]="filteredAbsences" matSort >
 
             <!-- Nom et Prénom Column -->
             <ng-container matColumnDef="nom">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et Prénom </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nom et Prénom </th>
                 <td mat-cell *matCellDef="let element">
-                    <ng-container *ngFor="let user of element.users">
-                        {{ user.nom }} {{ user.prenom }}
+                    <ng-container *ngFor="let user of element.users" >
+                        <div id="cur">{{ user.nom }} {{ user.divrenom }}</div>
                     </ng-container>
                 </td>
             </ng-container>
@@ -32,25 +32,25 @@
 
             <!-- Type of Absence Column -->
             <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'absence </th>
-                <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Type d'absence </th>
+                <td mat-cell *matCellDef="let element" id="cur"> {{ element.type }} </td>
             </ng-container>
 
             <!-- Date Start Column -->
             <ng-container matColumnDef="dateStart">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Début </th>
-                <td mat-cell *matCellDef="let element"> {{ element.dateStart | date: 'mediumDate' }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Début </th>
+                <td mat-cell *matCellDef="let element" id="cur"> {{ element.dateStart | date: 'mediumDate' }} </td>
             </ng-container>
 
             <!-- Date End Column -->
             <ng-container matColumnDef="dateEnd">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Fin </th>
-                <td mat-cell *matCellDef="let element"> {{ element.dateEnd | date: 'mediumDate' }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Fin </th>
+                <td mat-cell *matCellDef="let element" id="cur"> {{ element.dateEnd | date: 'mediumDate' }} </td>
             </ng-container>
             <!-- Number of Days Column -->
             <ng-container matColumnDef="days">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de Jours </th>
-                <td mat-cell *matCellDef="let element">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nombre de Jours </th>
+                <td mat-cell *matCellDef="let element" id="cur">
                     {{ calculateDaysDifference(element.dateStart, element.dateEnd) }} jours
                 </td>
             </ng-container>
@@ -58,21 +58,21 @@
 
             <!-- Description Column -->
             <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-                <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Description </th>
+                <td mat-cell *matCellDef="let element" id="cur"> {{ element.description }} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element">
+                <th mat-header-cell *matHeaderCellDef style="color: #006039;" id="cur"> Action </th>
+                <td mat-cell *matCellDef="let element" id="cur">
                     <button mat-button style="color: rgb(89, 147, 2);"
-                        (click)="approveAbsence(element.id, true)">Confirmer</button>
-                    <button mat-button color="warn" (click)="approveAbsence(element.id, false)">Refuser</button>
+                        (click)="approveAbsence(element.id, true)" id="cur">Confirmer</button>
+                    <button mat-button color="warn" (click)="approveAbsence(element.id, false)" id="cur">Refuser</button>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of absences"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of absences" id="cur"></mat-paginator>
     </div>
 </div>

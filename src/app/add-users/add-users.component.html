@@ -1,5 +1,4 @@
 <section class="py-5">
-  <h1 style="text-align: center; margin-bottom: 4%;">Ajouter un utilisateur</h1>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center">
       <!-- <div class="col-md-3 d-flex justify-content-center align-items-center">
@@ -7,75 +6,77 @@
       </div> -->
 
       <div class="col-md-8">
+        <h1 style="margin-bottom: 4%; color:#006039; font-family: cursive;" data-aos="fade-down">Ajouter un utilisateur</h1>
+
         <form [formGroup]="credentialForm" (ngSubmit)="signup()">
           <div class="row">
             <div class="col-md-6">
-              <div class="form-outline mb-3">
-                <label class="form-label" for="nom" style="margin-left: 2%;"><b>Nom:</b>
+              <div class="form-outline mb-3"  data-aos="fade-right">
+                <label class="form-label" for="nom" style="margin-left: 2%;" style="color: rgb(105, 105, 105);" id="cur"><b>Nom:</b>
 
                 </label>
-                <input type="text" name="nom" id="nom" placeholder="Votre nom" formControlName="nom" required
+                <input type="text" name="nom" id="nom" id="cur" placeholder="Votre nom" formControlName="nom" required
                   class="form-control custom-input" />
                 <div *ngIf="(nom?.dirty || nom?.touched) && nom?.errors" class="errors">
-                  <span *ngIf="nom?.errors?.['required']" style="color: red;">*Nom Obligatoire</span>
+                  <span *ngIf="nom?.errors?.['required']" style="color: red;" id="cur">*Nom Obligatoire</span>
                 </div>
               </div>
 
-              <div class="form-outline mb-3">
-                <label class="form-label" for="prenom" style="margin-left: 2%;"><b>Prenom:</b>
+              <div class="form-outline mb-3" data-aos="fade-right">
+                <label class="form-label" for="prenom" style="margin-left: 2%;" style="color: rgb(105, 105, 105);" id="cur"><b>Prenom:</b>
 
                 </label>
-                <input type="text" name="prenom" id="prenom" placeholder="Votre prenom" formControlName="prenom"
+                <input type="text" name="prenom" id="prenom" placeholder="Votre prenom" id="cur" formControlName="prenom"
                   required class="form-control custom-input" />
                 <div *ngIf="(prenom?.dirty || prenom?.touched) && prenom?.errors" class="errors">
-                  <span *ngIf="prenom?.errors?.['required']" style="color: red;">*Prenom Obligatoire</span>
+                  <span *ngIf="prenom?.errors?.['required']" style="color: red;" id="cur">*Prenom Obligatoire</span>
                 </div>
               </div>
 
-              <div class="form-outline mb-3">
-                <label class="form-label" for="email" style="margin-left: 2%;"><b>Email:</b>
+              <div class="form-outline mb-3" data-aos="fade-right">
+                <label class="form-label" for="email" style="margin-left: 2%;" style="color: rgb(105, 105, 105);" id="cur"><b>Email:</b>
 
                 </label>
-                <input type="text" name="email" id="email" placeholder="Votre email" formControlName="email" required
+                <input type="text" name="email" id="email" id="cur" placeholder="Votre email" formControlName="email" required
                   class="form-control custom-input" />
                 <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
-                  <span *ngIf="email?.errors?.['required']" style="color: red;">*Email Obligatoire</span>
-                  <span *ngIf="email?.errors?.['email']" style="color: red;">Email invalide</span>
+                  <span *ngIf="email?.errors?.['required']" style="color: red;" id="cur">*Email Obligatoire</span>
+                  <span *ngIf="email?.errors?.['email']" style="color: red;" id="cur">Email invalide</span>
                 </div>
               </div>
             </div>
 
             <div class="col-md-6">
-              <div class="form-outline mb-3">
-                <label class="form-label" for="password" style="margin-left: 2%;"><b>Mot de passe:</b>
+              <div class="form-outline mb-3" data-aos="fade-left">
+                <label class="form-label" for="password" style="margin-left: 2%;" style="color: rgb(105, 105, 105);" id="cur"><b>Mot de passe:</b>
 
                 </label>
                 <input type="password" name="password" formControlName="password" id="password"
-                  placeholder="Votre mot de passe" required class="form-control custom-input" />
+                  placeholder="Votre mot de passe" required class="form-control custom-input" id="cur" />
                 <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
-                  <span *ngIf="password?.errors?.['required']" style="color: red;">*Mot de passe Obligatoire</span>
-                  <span *ngIf="password?.errors?.['minlength']" style="color: red;">Mot de passe doit être au moins 6
+                  <span *ngIf="password?.errors?.['required']" style="color: red;" id="cur">*Mot de passe Obligatoire</span>
+                  <span *ngIf="password?.errors?.['minlength']" style="color: red;" id="cur">Mot de passe doit être au moins 6
                     caractères</span>
                 </div>
               </div>
 
-              <div class="form-outline mb-3">
-                <label class="form-label" for="confirmPassword" style="margin-left: 2%;"><b>Confirmez le mot de
+              <div class="form-outline mb-3" data-aos="fade-left">
+                <label class="form-label" for="confirmPassword" id="cur" style="margin-left: 2%;" style="color: rgb(105, 105, 105);"><b>Confirmez le mot de
                     passe:</b></label>
                 <input type="password" name="confirmPassword" formControlName="confirmPassword" id="confirmPassword"
-                  placeholder="Confirmez votre mot de passe" required class="form-control custom-input" />
+                  placeholder="Confirmez votre mot de passe" id="cur" required class="form-control custom-input" />
                 <div
                   *ngIf="credentialForm.errors?.['passwordMismatch'] && (confirmPassword?.dirty || confirmPassword?.touched)"
                   class="errors">
-                  <span style="color: red;">Les mots de passe doivent correspondre</span>
+                  <span style="color: red;" id="cur">Les mots de passe doivent correspondre</span>
 
                 </div>
 
               </div>
 
-              <div class="input-box button d-flex justify-content-end" style="margin-top: 10%;">
-                <button type="submit" [disabled]="!credentialForm.valid" class="btn btn-primary"
-                  style=" border-radius: 20px;">Inscrire</button>
+              <div class="input-box button d-flex justify-content-end" style="margin-top: 10%;" data-aos="fade-left">
+                <button type="submit" [disabled]="!credentialForm.valid" class="btn btn-outline-success"
+                  style=" border-radius: 20px; margin-top: 4%;" id="cur">Inscrire</button>
               </div>
             </div>
           </div>

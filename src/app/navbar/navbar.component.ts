@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   connecter!: Boolean;
   constructor(private localSt: LocalStorageService, private route: Router) {
     if (localSt.isLoggedIn()) {
@@ -16,13 +16,24 @@ export class NavbarComponent {
       this.connecter = false;
     }
   }
+  ngOnInit(): void {
+    this.getUsername();
+  }
   isLoggedIn(){
     return this.localSt.isLoggedIn();
   }
   signOut() {
     this.localSt.Signout();
-    this.connecter = false;
-    this.route.navigate(["login"]);
+  }
+  
+  getUsername(){
+    const user = this.localSt.getUser();
+    if(user){
+    return this.localSt.getUser().prenom + " " +this.localSt.getUser().nom.toUpperCase();
+    }
+    else{
+      return null;
+    }
   }
   isAdmin(): boolean {
     const authUser = localStorage.getItem('AuthUser');

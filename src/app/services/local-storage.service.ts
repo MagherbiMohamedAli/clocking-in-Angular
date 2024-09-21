@@ -17,7 +17,7 @@ export class LocalStorageService {
   constructor(private route: Router) { }
   Signout() {
     localStorage.clear();
-    this.route.navigate(['']);
+    //this.route.navigate(['']);
   }
 
   public getToken(): string | null {

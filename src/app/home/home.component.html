@@ -1,56 +1,62 @@
-<section class="filter-section">
-    <div class="filter-container mat-elevation-z3">
+<section class="filter-section" *ngIf="isLoggedIn()">
+    <h1 data-aos="zoom-in"
+        style="margin-top: 4%;color: #006039; margin-top: -5px; padding-bottom: 2%; font-family: cursive;">
+        Système de pointage</h1>
+
+    <div class="filter-container" data-aos="zoom-in">
         <div class="form-row">
-            <mat-form-field class="form-field" appearance="fill">
-                <mat-label>Select user</mat-label>
+            <mat-form-field class="form-field" appearance="fill" >
+                <mat-label id="cur">Select user</mat-label>
                 <mat-select [(ngModel)]="selectedUserId" (selectionChange)="onUserSelect()">
-                    <mat-option *ngFor="let user of users" [value]="user.id">
+                    <mat-option id="cur" *ngFor="let user of users" [value]="user.id">
                         {{ user.nom }} {{ user.prenom }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field class="form-field" appearance="fill">
-                <mat-label>Select status</mat-label>
+                <mat-label id="cur">Select status</mat-label>
                 <mat-select [(ngModel)]="selectedStatusId">
-                    <mat-option *ngFor="let status of statuses" [value]="status.id">
+                    <mat-option id="cur" *ngFor="let status of statuses" [value]="status.id">
                         {{ status.status.charAt(0).toUpperCase() + status.status.slice(1).toLowerCase() }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field *ngIf="selectedStatusId === entreeStatusId" class="form-field" appearance="fill">
-                <mat-label>Select work mode</mat-label>
+                <mat-label id="cur">Select work mode</mat-label>
                 <mat-select [(ngModel)]="selectedWorkMode">
-                    <mat-option value="REMOTE">Remote</mat-option>
-                    <mat-option value="ONSITE">Onsite</mat-option>
+                    <mat-option id="cur" value="REMOTE">Remote</mat-option>
+                    <mat-option id="cur" value="ONSITE">Onsite</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <button class="btn btn-primary" style="border-radius: 40px;" (click)="onSubmit()" type="button"
-                *ngIf="shouldShowButton()">Enregistrer</button>
-            <button class="btn btn-secondary" (click)="fetchTotalTimeForAllUsers()" *ngIf="hasAdminRole()"
-                style="border-radius: 40px; position: absolute; left: 75%;">Rapport</button>
+            <button class="btn btn-outline-success" style="border-radius: 40px; margin-top: -4%; " (click)="onSubmit()" type="button"
+                *ngIf="shouldShowButton()" id="cur">Enregistrer</button>
+            <button class="btn btn-outline-secondary" (click)="fetchTotalTimeForAllUsers()" *ngIf="hasAdminRole()"
+                style="border-radius: 40px; position: absolute; left: 90%; margin-top: -2%;" id="cur">Rapport</button>
 
         </div>
     </div>
+    <div class="container" style="margin-bottom: 5%;">
 
-    <div class="table-container mat-elevation-z8" style="margin-bottom: 5%;">
-        <table mat-table [dataSource]="filteredUsers" matSort #tableSort="matSort" class="mat-elevation-z8">
+    <div class="table-container" style="max-width: 100%; margin: auto;" data-aos="zoom-in">
+        <table mat-table [dataSource]="filteredUsers" matSort #tableSort="matSort">
 
             <ng-container matColumnDef="nom">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et Prénom </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nom et Prénom
+                </th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.status">
+                    <span *ngIf="element.status" id="cur">
                         <h6>{{ element.nom }} {{ element.prenom }}</h6>
                     </span>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Statut </th>
                 <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status?.status)">
-                    <span>
+                    <span id="cur">
                         <h6>{{ element.status?.status.charAt(0).toUpperCase() +
                             element.status?.status.slice(1).toLowerCase() }}</h6>
                     </span>
@@ -59,9 +65,9 @@
 
 
             <ng-container matColumnDef="time">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Time </th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.status">
+                    <span *ngIf="element.status" id="cur">
                         <h6>{{ element.modified | date: 'HH:mm:ss' }}</h6>
                     </span>
                 </td>
@@ -69,19 +75,24 @@
 
 
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Temps travaillé </th>
+                <th mat-header-cell *matHeaderCellDef style="color: #006039;" id="cur"> Temps travaillé </th>
                 <td mat-cell *matCellDef="let element">
-                    <button class="btn btn-success" style="border-radius: 40px;" (click)="getTotalTime(element.id)"
-                        type="button" *ngIf="displayMinutesButton(element.id) && element.status">
+                    <button class="btn btn-secondary" style="border-radius: 40px; font-size: x-small; margin-left: 7%;"
+                        (click)="getTotalTime(element.id)" type="button" id="cur"
+                        *ngIf="displayMinutesButton(element.id) && element.status">
                         Récuperer
                     </button>
                 </td>
             </ng-container>
             <ng-container matColumnDef="workMode">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Mode de travail </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Mode de travail
+                </th>
                 <td mat-cell *matCellDef="let element">
-                    <span>
-                        <h6> {{ element.workMode }}</h6>
+                    <span id="cur">
+                        <h6>
+                            {{ element.workMode ? (element.workMode.charAt(0).toUpperCase() +
+                            element.workMode.slice(1).toLowerCase()) : '' }}
+                        </h6>
                     </span>
                 </td>
             </ng-container>
@@ -92,7 +103,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        <mat-paginator id="cur" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
     </div>
-
+</div>
 </section>

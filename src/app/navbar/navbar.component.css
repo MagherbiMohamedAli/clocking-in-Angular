@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     padding: 0.5rem 1rem;
   }
   
@@ -43,5 +43,81 @@
   
   .navbar-toggler {
     border-color: #fff;
-  }
-  
+  } */
+
+
+
+
+
+
+
+
+
+
+/* Vertical Sidebar */
+.title {
+  font-family: cursive;
+  display: flex;
+  align-items: center;
+  margin-left: -20px;
+}
+
+.logo-image {
+  height: 50px;
+  /* Adjust the height to match the text size */
+  width: auto;
+  /* Automatically scale the width to maintain aspect ratio */
+  margin-right: -5px;
+  /* Add some space between the logo and the text */
+}
+
+.navbar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #007bff;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-nav {
+  flex-grow: 1;
+  /* Ensures that this section takes up available space */
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #f0f0f0;
+  background-color: #015a36;
+}
+
+
+.logout-button {
+  margin-top: auto;
+  width: 100%;
+}
+
+.btn-dark {
+  border-radius: 20px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+/* Adjust the main content layout to the right */
+.main-content {
+  margin-left: 250px;
+  /* Same width as the sidebar */
+  padding: 20px;
+}

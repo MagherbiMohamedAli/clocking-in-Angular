@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { UserUpdateComponent } from '../user-update/user-update.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { UserService } from '../services/user.service';
+import Aos from 'aos';
 
 @Component({
   selector: 'app-users-list',
@@ -21,6 +22,11 @@ export class UsersListComponent implements OnInit{
   constructor(private userService: UserService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    Aos.init({
+      duration: 1000, 
+      easing: 'ease-in-out', 
+      once: true
+    });
     this.getAllUsers();
     this.dataSource.paginator = this.paginator;
   }

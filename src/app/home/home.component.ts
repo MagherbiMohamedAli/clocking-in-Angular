@@ -7,7 +7,8 @@ import autoTable from 'jspdf-autotable';
 import { jsPDF } from 'jspdf';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import Aos from 'aos';
+import { LocalStorageService } from '../services/local-storage.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,9 +31,14 @@ export class HomeComponent implements OnInit {
   totalTimeWorked: number | null = null;
   hasSelectedSelf: boolean = false;
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private localSt:LocalStorageService ,private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
+    Aos.init({
+      duration: 1000, 
+      easing: 'ease-in-out', 
+      once: true
+    });
     this.loggedInUserId = this.getLoggedInUserId();
     this.fetchUsers();
     this.fetchStatuses();
@@ -46,7 +52,9 @@ export class HomeComponent implements OnInit {
     this.scheduleFilterAt11_50PM();
   }
 
-  
+  isLoggedIn(){
+    return this.localSt.isLoggedIn();
+  }
   checkIfAdmin(): boolean {
     const authUser = localStorage.getItem('AuthUser');
     if (authUser) {

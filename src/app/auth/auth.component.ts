@@ -27,6 +27,9 @@ export class AuthComponent implements OnInit {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
+  isLoggedIn() {
+    return this.localStorage.isLoggedIn();
+  }
 
   login() {
     console.log('Login function called');
@@ -53,8 +56,11 @@ export class AuthComponent implements OnInit {
           nom: data.nom,
           prenom: data.prenom
         });
+
         this.localStorage.saveAuthorities(data.roles);
+
         if (data.roles[0].role == "ROLE_ADMIN") {
+          
           Swal.fire({
             title: 'Bienvenue admin ' + data.nom + ' ' + data.prenom,
             showDenyButton: true,
@@ -66,17 +72,18 @@ export class AuthComponent implements OnInit {
               this.route.navigate(["home"]);
 
             } else if (result.isDenied) {
-              this.route.navigate(["addUsers"]);
+              this.route.navigate(["/addUsers"]);
 
             } else {
-              this.route.navigate(["login"]);
+              this.route.navigate(["/"]);
 
             }
 
           })
         } else {
-          Swal.fire('Bienvenue ' + data.nom + ' ' + data.prenom)
-          this.route.navigate(["/home"]);
+
+          this.route.navigate(["home"]);
+
         }
       },
       error: (err: any) => {
@@ -88,13 +95,11 @@ export class AuthComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.credentialForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-
   get email() {
     return this.credentialForm.get('email');
   }

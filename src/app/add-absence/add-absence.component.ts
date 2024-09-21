@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Aos from 'aos';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,6 +23,11 @@ export class AddAbsenceComponent implements OnInit{
 
   constructor(private http: HttpClient, private router: Router, private fb: FormBuilder) {}
   ngOnInit(): void {
+    Aos.init({
+      duration: 1000, 
+      easing: 'ease-in-out', 
+      once: true
+    });
     this.absenceForm = this.fb.group({
       type: ['', Validators.required],
       description: ['', Validators.required],

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import Aos from 'aos';
 
 @Component({
   selector: 'app-my-absence',
@@ -14,6 +15,11 @@ export class MyAbsenceComponent implements OnInit{
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    Aos.init({
+      duration: 1000, 
+      easing: 'ease-in-out', 
+      once: true
+    });
     this.getMyAbsence();
   }
 
