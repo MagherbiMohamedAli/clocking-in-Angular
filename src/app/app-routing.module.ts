@@ -9,6 +9,8 @@ import { AddAbsenceComponent } from './add-absence/add-absence.component';
 import { ManageAbsComponent } from './manage-abs/manage-abs.component';
 import { MyAbsenceComponent } from './my-absence/my-absence.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 const routes: Routes = [
   {path:"login", component: AuthComponent},
@@ -19,6 +21,7 @@ const routes: Routes = [
   {path:"manageabs", component: ManageAbsComponent, canActivate:[adminGuard]},
   {path:"myabs", component: MyAbsenceComponent, canActivate:[authGuard]},
   {path:"users", component: UsersListComponent, canActivate:[adminGuard]},
+  {path:"projects", component: ProjectsComponent, canActivate:[adminGuard]},
 ];
 
 @NgModule({

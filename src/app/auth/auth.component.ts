@@ -81,9 +81,7 @@ export class AuthComponent implements OnInit {
 
           })
         } else {
-
-          this.route.navigate(["home"]);
-
+          this.route.navigate(["/"]);
         }
       },
       error: (err: any) => {

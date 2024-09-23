@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit{
   }
   signOut() {
     this.localSt.Signout();
+    this.route.navigate(['/login']);
   }
   
   getUsername(){

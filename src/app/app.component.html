@@ -1,8 +1,9 @@
+<!-- app.component.html -->
+
 <div class="d-flex flex-column min-vh-100">
-    <app-navbar></app-navbar>
-    <div class="flex-grow-1">
-      <router-outlet></router-outlet>
-    </div>
-    <!-- <app-footer></app-footer> -->
-  </div>
+  <!-- The navbar is part of your authenticated layout -->
+  <app-navbar></app-navbar>
   
+  <!-- Remove the second router-outlet -->
+  <!-- This is where your main content will be rendered after login -->
+</div>

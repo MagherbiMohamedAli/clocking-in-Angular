@@ -64,8 +64,8 @@
 
 
 
-<div class="d-flex" *ngIf="isLoggedIn()">
-  <nav class="navbar navbar-expand-lg navbar-dark flex-column vh-100" style="background-color: #006039;">
+<div class="d-flex">
+  <nav class="navbar navbar-expand-lg navbar-dark flex-column vh-100" style="background-color: #006039;" *ngIf="isLoggedIn()">
     <div class="container-fluid d-flex flex-column align-items-start flex-grow-1">
       <a class="navbar-brand text-white mb-4" routerLink="/">
         <h3 class="title mb-0 d-flex align-items-center">
@@ -116,7 +116,7 @@
             *ngIf="isEmp() && isLoggedIn()">
             <i class="fa-regular fa-calendar" style="margin-right: 8px; font-size: 16px; margin-top: -15px;"></i>
 
-            <h5 style="margin: 0; margin-top: -15px; ;font-family: cursive; font-size: 17px;">Consulter absences</h5>
+            <h5 style="margin: 0; margin-top: -15px; ;font-family: cursive; font-size: 17px;">Consulter compte</h5>
           </a>
         </li>
         <li class="nav-item mb-3" style="margin-left: -2px;">
@@ -124,6 +124,17 @@
             *ngIf="isAdmin() && isLoggedIn()">
             <i class="fa-solid fa-list-check" style="margin-right: 8px; font-size: 18px;"></i>
             <h5 style="margin: 0; font-family: cursive; font-size: 17px;">Gérer Utilisateurs</h5>
+          </a>
+        </li>
+
+        <hr style="border-top: 2px solid black; margin: 0 0 10px 0;"  *ngIf="isAdmin() && isLoggedIn()">
+
+        <li class="nav-item mb-3">
+          <a class="nav-link text-white d-flex align-items-center" [routerLink]="['/projects']"
+            *ngIf="isAdmin() && isLoggedIn()">
+            <i class="fa-regular fa-calendar" style="margin-right: 8px; font-size: 16px;"></i>
+
+            <h5 style="margin: 0;  ;font-family: cursive; font-size: 17px;">Gérer les projets</h5>
           </a>
         </li>
       </div>

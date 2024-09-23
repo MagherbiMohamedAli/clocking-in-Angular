@@ -30,6 +30,10 @@ import { ManageAbsComponent } from './manage-abs/manage-abs.component';
 import { MyAbsenceComponent } from './my-absence/my-absence.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
+import { MatListModule } from '@angular/material/list'; // Add this import
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -43,10 +47,13 @@ import { UserUpdateComponent } from './user-update/user-update.component';
     ManageAbsComponent,
     MyAbsenceComponent,
     UsersListComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    ProjectsComponent,
+    ProjectFormComponent
     ],
   imports: [
     MatTableModule,
+    MatListModule,
     FormsModule,
     MatDialogModule,
     MatButtonModule,
@@ -55,11 +62,11 @@ import { UserUpdateComponent } from './user-update/user-update.component';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
     BrowserModule,
     MatButtonModule,
-    MatSelectModule,
     MatIconModule,
     AppRoutingModule,
     HttpClientModule,

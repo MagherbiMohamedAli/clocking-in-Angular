@@ -1,0 +1,71 @@
+<h1 style="margin-bottom: 4%; color:#006039; font-family: cursive;" data-aos="fade-down">Gérer les projets</h1>
+
+<div>
+
+  <table mat-table [dataSource]="dataSource" class="full-width-table" data-aos="zoom-in">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef id="cur"> ID </th>
+      <td mat-cell *matCellDef="let project" id="cur"> {{project.id}} </td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef id="cur"> Title </th>
+      <td mat-cell *matCellDef="let project" id="cur"> {{project.title}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef id="cur"> Description </th>
+      <td mat-cell *matCellDef="let project" id="cur"> {{project.description}} </td>
+    </ng-container>
+
+    <!-- Client Name Column -->
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef id="cur"> Client Name </th>
+      <td mat-cell *matCellDef="let project" id="cur"> {{project.clientName}} </td>
+    </ng-container>
+
+    <!-- Start Date Column -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef id="cur"> Start Date </th>
+      <td mat-cell *matCellDef="let project" id="cur"> {{project.startDate | date}} </td>
+    </ng-container>
+
+    <!-- End Date Column -->
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef id="cur"> End Date </th>
+      <td mat-cell *matCellDef="let project" id="cur"> {{project.endDate | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="members">
+      <th mat-header-cell *matHeaderCellDef id="cur"> Members </th>
+      <td mat-cell *matCellDef="let project"
+        [matTooltip]="project.members?.length ? getMemberNames(project.members) : 'No members'"
+        matTooltipPosition="above" id="cur">
+        {{ project.members?.length || 0 }}
+        {{ project.members?.length === 1 ? 'member' : 'members' }}
+      </td>
+    </ng-container>
+
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef id="cur"> Actions </th>
+      <td mat-cell *matCellDef="let project">
+        <i class="fa-solid fa-user-pen" style="color: #006039; font-size: 20px; cursor: pointer;"
+          (click)="editProject(project)"></i>
+        <i class="fa-solid fa-trash" style="color: rgb(168, 4, 4); cursor: pointer; margin-left: 20%; font-size: 20px;"
+          (click)="deleteProject(project.id)"></i>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Create or Edit Project Form -->
+  <button (click)="openCreateProjectDialog()" class="btn btn-outline-success"
+    style=" border-radius: 20px; margin-top: 2%; margin-left: 87%;" id="cur">Ajouter un projet</button>
+</div>

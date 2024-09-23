@@ -1,72 +1,126 @@
-<div *ngIf="absenceInfo; else noAbsence" style="margin-top: 5%; margin-bottom: 5%">
-    <h1 style="text-align: center; margin-bottom: 5%; color: #006039; font-family: cursive;" data-aos="fade-down">Consultation absences</h1>
-    <div id="tab" style="margin-bottom: 5%; max-width: 80%; margin: auto;" data-aos="zoom-in">
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<div style="margin-top: 5%; margin-bottom: 5%">
+  <h1 style="margin-bottom: 5%; color: #006039; font-family: cursive;" data-aos="fade-down">Consultation absences</h1>
   
-        <!-- Nom et Prénom Column -->
-        <ng-container matColumnDef="nom">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nom et Prénom </th>
-          <td mat-cell *matCellDef="let element" id="cur">
-            {{ element.nom }} {{ element.prenom }}
-          </td>
-        </ng-container>
-  
-        <!-- Type d'absence Column -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Type d'absence </th>
-          <td mat-cell *matCellDef="let element" id="cur">
-            {{ element.type }}
-          </td>
-        </ng-container>
-  
-        <!-- Date Début Column -->
-        <ng-container matColumnDef="dateStart">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Début </th>
-          <td mat-cell *matCellDef="let element" id="cur">
-            {{ element.dateStart | date: 'mediumDate' }}
-          </td>
-        </ng-container>
-  
-        <!-- Date Fin Column -->
-        <ng-container matColumnDef="dateEnd">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Fin </th>
-          <td mat-cell *matCellDef="let element" id="cur">
-            {{ element.dateEnd | date: 'mediumDate' }}
-          </td>
-        </ng-container>
-  
-        <!-- Nombre de Jours Column -->
-        <ng-container matColumnDef="numberOfDays">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nombre de Jours </th>
-          <td mat-cell *matCellDef="let element" id="cur">
-            {{ element.numberOfDays }} jours
-          </td>
-        </ng-container>
-  
-        <!-- Description Column -->
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Description </th>
-          <td mat-cell *matCellDef="let element" id="cur">
-            {{ element.description }}
-          </td>
-        </ng-container>
-  
-        <!-- Status Column -->
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Statut </th>
-          <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
-            <span id="cur">{{ element.status }}</span>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+  <!-- Absences Table or Fallback -->
+  <div *ngIf="dataSource.length > 0; else noAbsence" id="tab" style="margin-bottom: 5%; max-width: 100%; margin: auto;" data-aos="zoom-in">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Nom et Prénom Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nom et Prénom </th>
+        <td mat-cell *matCellDef="let element" id="cur">
+          {{ element.nom }} {{ element.prenom }}
+        </td>
+      </ng-container>
+
+      <!-- Type d'absence Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Type d'absence </th>
+        <td mat-cell *matCellDef="let element" id="cur">
+          {{ element.type }}
+        </td>
+      </ng-container>
+
+      <!-- Date Début Column -->
+      <ng-container matColumnDef="dateStart">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Début </th>
+        <td mat-cell *matCellDef="let element" id="cur">
+          {{ element.dateStart | date: 'mediumDate' }}
+        </td>
+      </ng-container>
+
+      <!-- Date Fin Column -->
+      <ng-container matColumnDef="dateEnd">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Date Fin </th>
+        <td mat-cell *matCellDef="let element" id="cur">
+          {{ element.dateEnd | date: 'mediumDate' }}
+        </td>
+      </ng-container>
+
+      <!-- Nombre de Jours Column -->
+      <ng-container matColumnDef="numberOfDays">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Nombre de Jours </th>
+        <td mat-cell *matCellDef="let element" id="cur">
+          {{ element.numberOfDays }} jours
+        </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Description </th>
+        <td mat-cell *matCellDef="let element" id="cur">
+          {{ element.description }}
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="color: #006039;" id="cur"> Statut </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
+          <span id="cur">{{ element.status }}</span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
-  
-  <!-- Fallback message when there is no absence data -->
+
+  <!-- Fallback message for absences -->
   <ng-template #noAbsence>
-    <h2 style="text-align: center; margin-top: 16%;">Vous pouvez demander une absence dans l'onglet absence</h2>
+    <h2 style="text-align: center;" id="cur" data-aos="fade-down">Vous pouvez demander une absence dans l'onglet absence</h2>
   </ng-template>
-  
+
+  <!-- Projects Table or Fallback -->
+  <h1 style="margin-top: 5%; margin-bottom: 5%; color: #006039; font-family: cursive;" data-aos="fade-down">Projets Assignés</h1>
+  <div *ngIf="projectsDataSource.length > 0; else noProjects" id="tab" style="margin-bottom: 5%; max-width: 100%; margin: auto;" data-aos="zoom-in">
+    <table mat-table [dataSource]="projectsDataSource" matSort class="mat-elevation-z8">
+
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef id="cur" style="color: #006039;"> Title </th>
+        <td mat-cell *matCellDef="let project" id="cur"> {{project.title}} </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef id="cur" style="color: #006039;"> Description </th>
+        <td mat-cell *matCellDef="let project" id="cur"> {{project.description}} </td>
+      </ng-container>
+
+      <!-- Client Name Column -->
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef id="cur" style="color: #006039;"> Client Name </th>
+        <td mat-cell *matCellDef="let project" id="cur"> {{project.clientName}} </td>
+      </ng-container>
+      <!-- Start Date Column -->
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef id="cur" style="color: #006039;"> Start Date </th>
+        <td mat-cell *matCellDef="let project" id="cur"> {{ project.startDate | date: 'mediumDate' }} </td>
+      </ng-container>
+
+      <!-- End Date Column -->
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef id="cur" style="color: #006039;"> End Date </th>
+        <td mat-cell *matCellDef="let project" id="cur"> {{ project.endDate | date: 'mediumDate' }} </td>
+      </ng-container>
+
+      <!-- Members Column -->
+      <ng-container matColumnDef="members">
+        <th mat-header-cell *matHeaderCellDef id="cur" style="color: #006039;"> Members </th>
+        <td id="cur" mat-cell *matCellDef="let project" [matTooltip]="getMemberNames(project.members)" >
+          {{ project.members.length }} {{ project.members.length === 1 ? 'member' : 'members' }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="projectDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: projectDisplayedColumns;"></tr>
+    </table>
+  </div>
+
+  <!-- Fallback message for projects -->
+  <ng-template #noProjects >
+    <h2 style="text-align: center;" id="cur" data-aos="fade-down">Vous n'avez aucun projet assigné</h2>
+  </ng-template>
+</div>
